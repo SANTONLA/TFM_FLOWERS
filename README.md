@@ -41,14 +41,6 @@ Para utilizar este dataset, clona el repositorio y accede a las imágenes:
 git clone https://github.com/tuusuario/flowers-dataset.git
 cd flowers-dataset
 
-
-HOLA. ESCRIBIME UN README PARA GITHUB CON ICONOS DEL DATASET FLOWERS
-
-ChatGPT
-¡Hola! Claro, aquí tienes un ejemplo de README para un repositorio de GitHub que contiene un dataset de flores, incluyendo iconos para hacerlo más atractivo visualmente.
-
-markdown
-Copiar código
 # 🌸 Flowers Dataset 🌼
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
