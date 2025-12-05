@@ -3,99 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clasificador de Flores 🌸</title>
+    <title>TFM FLOWERS 🌸</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Reset básico */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f0f8ff;
-            padding: 20px;
-        }
-        h1 {
-            color: #ff69b4;
-        }
-        .preview {
-            margin: 20px 0;
-        }
-        img {
-            max-width: 400px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        }
-        #result {
-            font-size: 1.5em;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            background: #fffaf0;
             color: #333;
-            margin-top: 20px;
         }
-        input[type="file"] {
-            margin-top: 20px;
+
+        header {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
         }
-        button {
-            margin-top: 10px;
-            padding: 10px 20px;
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            color: #ff6f91;
+            margin-bottom: 20px;
+            font-size: 2em;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            width: 60px;
+            height: 4px;
+            background: #ff6f91;
+            display: block;
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+        }
+
+        .upload-section {
+            background: #ffe4e1;
+            padding: 40px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .upload-section input {
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .upload-section button {
+            margin-top: 15px;
+            padding: 12px 25px;
             font-size: 1em;
-            background-color: #ff69b4;
+            background: #ff6f91;
+            color: #fff;
             border: none;
-            border-radius: 5px;
-            color: white;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background 0.3s;
         }
-        button:hover {
-            background-color: #ff1493;
+
+        .upload-section button:hover {
+            background: #ff3b6f;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #ff3b6f;
+        }
+
+        footer {
+            background: #ff6f91;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+            font-size: 0.9em;
+        }
+
+        /* Animaciones simples */
+        header h1, header p {
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        @keyframes fadeInDown {
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <h1>Clasificador de Flores 🌼</h1>
-    <input type="file" id="fileInput" accept="image/*">
-    <div class="preview">
-        <img id="previewImg" src="" alt="Previsualización de la imagen" style="display:none;">
-    </div>
-    <button id="predictBtn">Predecir Flor</button>
-    <div id="result"></div>
+    <header>
+        <h1>TFM FLOWERS 🌸</h1>
+        <p>Clasificación de flores usando Deep Learning</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Acerca del proyecto</h2>
+            <p>Este proyecto utiliza un dataset de flores con 4 clases: Rosas, Tulipanes, Narcisos y Girasoles. 
+            Se entrenó un modelo de Deep Learning para clasificar imágenes de flores automáticamente. 
+            La interfaz permite subir imágenes y ver predicciones en tiempo real (cuando se integre el backend).</p>
+        </section>
+
+        <section>
+            <h2>Modelo y Dataset</h2>
+            <p>El modelo está basado en redes neuronales convolucionales (CNN) usando PyTorch. 
+            Las imágenes del dataset tienen resolución de 1024x768 px y fueron preprocesadas para mejorar la precisión del modelo.</p>
+        </section>
+
+        <section>
+            <h2>Galería de ejemplo</h2>
+            <div class="gallery">
+                <img src="https://via.placeholder.com/400x300?text=Rosa" alt="Rosa">
+                <img src="https://via.placeholder.com/400x300?text=Tulipán" alt="Tulipán">
+                <img src="https://via.placeholder.com/400x300?text=Narciso" alt="Narciso">
+                <img src="https://via.placeholder.com/400x300?text=Girasol" alt="Girasol">
+            </div>
+        </section>
+
+        <section class="upload-section">
+            <h2>Prueba el modelo</h2>
+            <p>Sube una imagen para ver cómo el modelo la clasificaría:</p>
+            <input type="file" id="fileInput" accept="image/*">
+            <br>
+            <button id="predictBtn">Predecir Flor</button>
+            <p id="result"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>TFM FLOWERS &copy; 2025 - Proyecto de Deep Learning</p>
+    </footer>
 
     <script>
         const fileInput = document.getElementById('fileInput');
-        const previewImg = document.getElementById('previewImg');
         const predictBtn = document.getElementById('predictBtn');
         const resultDiv = document.getElementById('result');
 
-        fileInput.addEventListener('change', () => {
-            const file = fileInput.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = e => {
-                    previewImg.src = e.target.result;
-                    previewImg.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
         predictBtn.addEventListener('click', () => {
-            const file = fileInput.files[0];
-            if (!file) {
-                alert("Por favor, selecciona una imagen primero.");
+            if (!fileInput.files[0]) {
+                alert("Selecciona una imagen primero");
                 return;
             }
-
-            // Aquí enviarías la imagen al backend con fetch
-            const formData = new FormData();
-            formData.append('file', file);
-
-            fetch('/predict', {  // Ruta de tu backend en Flask/Django/etc.
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                resultDiv.textContent = `La flor es: ${data.prediction}`;
-            })
-            .catch(err => {
-                console.error(err);
-                resultDiv.textContent = "Error al predecir la flor.";
-            });
+            resultDiv.textContent = "Aquí se mostraría la predicción del modelo (backend aún no implementado).";
         });
     </script>
 </body>
 </html>
+
