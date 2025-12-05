@@ -6,7 +6,6 @@
     <title>TFM FLOWERS 🌸</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset básico */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
@@ -28,11 +27,13 @@
         header h1 {
             font-size: 3em;
             margin-bottom: 10px;
+            animation: fadeInDown 1s ease forwards;
         }
 
         header p {
             font-size: 1.3em;
             opacity: 0.9;
+            animation: fadeInDown 1.5s ease forwards;
         }
 
         main {
@@ -130,11 +131,6 @@
             font-size: 0.9em;
         }
 
-        /* Animaciones simples */
-        header h1, header p {
-            animation: fadeInDown 1s ease forwards;
-        }
-
         @keyframes fadeInDown {
             0% { opacity: 0; transform: translateY(-30px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -151,14 +147,14 @@
         <section>
             <h2>Acerca del proyecto</h2>
             <p>Este proyecto utiliza un dataset de flores con 4 clases: Rosas, Tulipanes, Narcisos y Girasoles. 
-            Se entrenó un modelo de Deep Learning para clasificar imágenes de flores automáticamente. 
-            La interfaz permite subir imágenes y ver predicciones en tiempo real (cuando se integre el backend).</p>
+            Se entrenó un modelo de Deep Learning para clasificar imágenes automáticamente. 
+            La interfaz permite subir imágenes y ver predicciones simuladas en tiempo real.</p>
         </section>
 
         <section>
             <h2>Modelo y Dataset</h2>
             <p>El modelo está basado en redes neuronales convolucionales (CNN) usando PyTorch. 
-            Las imágenes del dataset tienen resolución de 1024x768 px y fueron preprocesadas para mejorar la precisión del modelo.</p>
+            Las imágenes del dataset tienen resolución de 1024x768 px y fueron preprocesadas para mejorar la precisión.</p>
         </section>
 
         <section>
@@ -178,6 +174,9 @@
             <br>
             <button id="predictBtn">Predecir Flor</button>
             <p id="result"></p>
+            <div class="preview" style="margin-top:20px;">
+                <img id="previewImg" src="" alt="" style="max-width:300px; border-radius:10px; display:none; box-shadow:0 10px 15px rgba(0,0,0,0.2);">
+            </div>
         </section>
     </main>
 
@@ -189,15 +188,39 @@
         const fileInput = document.getElementById('fileInput');
         const predictBtn = document.getElementById('predictBtn');
         const resultDiv = document.getElementById('result');
+        const previewImg = document.getElementById('previewImg');
+
+        const simulatedPredictions = ['Rosa', 'Tulipán', 'Narciso', 'Girasol'];
+
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    previewImg.src = e.target.result;
+                    previewImg.style.display = 'block';
+                    resultDiv.textContent = '';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
 
         predictBtn.addEventListener('click', () => {
             if (!fileInput.files[0]) {
                 alert("Selecciona una imagen primero");
                 return;
             }
-            resultDiv.textContent = "Aquí se mostraría la predicción del modelo (backend aún no implementado).";
+
+            // Simula un tiempo de "predicción"
+            resultDiv.textContent = "Prediciendo...";
+            setTimeout(() => {
+                // Selección aleatoria de flor simulada
+                const prediction = simulatedPredictions[Math.floor(Math.random() * simulatedPredictions.length)];
+                resultDiv.textContent = `La flor es: ${prediction} 🌸`;
+            }, 1000);
         });
     </script>
 </body>
 </html>
+
 
