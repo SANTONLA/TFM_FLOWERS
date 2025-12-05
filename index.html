@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clasificador de Flores 🌸</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            padding: 20px;
+        }
+        h1 {
+            color: #ff69b4;
+        }
+        .preview {
+            margin: 20px 0;
+        }
+        img {
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        #result {
+            font-size: 1.5em;
+            color: #333;
+            margin-top: 20px;
+        }
+        input[type="file"] {
+            margin-top: 20px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #ff69b4;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+    </style>
+</head>
+<body>
+    <h1>Clasificador de Flores 🌼</h1>
+    <input type="file" id="fileInput" accept="image/*">
+    <div class="preview">
+        <img id="previewImg" src="" alt="Previsualización de la imagen" style="display:none;">
+    </div>
+    <button id="predictBtn">Predecir Flor</button>
+    <div id="result"></div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const previewImg = document.getElementById('previewImg');
+        const predictBtn = document.getElementById('predictBtn');
+        const resultDiv = document.getElementById('result');
+
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = e => {
+                    previewImg.src = e.target.result;
+                    previewImg.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        predictBtn.addEventListener('click', () => {
+            const file = fileInput.files[0];
+            if (!file) {
+                alert("Por favor, selecciona una imagen primero.");
+                return;
+            }
+
+            // Aquí enviarías la imagen al backend con fetch
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/predict', {  // Ruta de tu backend en Flask/Django/etc.
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                resultDiv.textContent = `La flor es: ${data.prediction}`;
+            })
+            .catch(err => {
+                console.error(err);
+                resultDiv.textContent = "Error al predecir la flor.";
+            });
+        });
+    </script>
+</body>
+</html>
