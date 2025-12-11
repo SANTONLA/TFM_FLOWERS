@@ -160,17 +160,17 @@
         <section>
             <h2>Galería de ejemplo</h2>
             <div class="gallery">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Rose_flower.jpg" alt="Rosa">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Tulip_-_floriade_canberra.jpg" alt="Tulipán">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Narcissus_flower.jpg" alt="Narciso">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Sunflower_sky_backdrop.jpg" alt="Girasol">
+                <img src="imagenes/rosa1024.jpg" alt="Rosa">
+                <img src="imagenes/tulipan1024.jpg" alt="Tulipán">
+                <img src="imagenes/narciso1024.jpg" alt="Narciso">
+                <img src="imageness/girasol1024.jpg" alt="Girasol">
             </div>
         </section>
 
         <section class="upload-section">
             <h2>Prueba el modelo</h2>
             <p>Sube una imagen para ver cómo el modelo la clasificaría:</p>
-            <input type="file" id="fileInput" accept="image/*">
+            <input type="file" id="fileInput" accept="imagenes/*">
             <br>
             <button id="predictBtn">Predecir Flor</button>
             <p id="result"></p>
@@ -211,10 +211,8 @@
                 return;
             }
 
-            // Simula un tiempo de "predicción"
             resultDiv.textContent = "Prediciendo...";
             setTimeout(() => {
-                // Selección aleatoria de flor simulada
                 const prediction = simulatedPredictions[Math.floor(Math.random() * simulatedPredictions.length)];
                 resultDiv.textContent = `La flor es: ${prediction} 🌸`;
             }, 1000);
@@ -222,6 +220,7 @@
     </script>
 </body>
 </html>
+
 
 
 
