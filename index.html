@@ -7,52 +7,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             background: #fffaf0;
             color: #333;
         }
-
         header {
             background: linear-gradient(to right, #ff9a9e, #fad0c4);
             color: #fff;
             text-align: center;
             padding: 60px 20px;
-            position: relative;
-            overflow: hidden;
         }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            animation: fadeInDown 1s ease forwards;
-        }
-
-        header p {
-            font-size: 1.3em;
-            opacity: 0.9;
-            animation: fadeInDown 1.5s ease forwards;
-        }
-
-        main {
-            max-width: 1100px;
-            margin: auto;
-            padding: 40px 20px;
-        }
-
-        section {
-            margin-bottom: 60px;
-        }
-
-        h2 {
-            color: #ff6f91;
-            margin-bottom: 20px;
-            font-size: 2em;
-            position: relative;
-        }
-
+        header h1 { font-size: 3em; margin-bottom: 10px; }
+        header p { font-size: 1.3em; opacity: 0.9; }
+        main { max-width: 1100px; margin: auto; padding: 40px 20px; }
+        section { margin-bottom: 60px; }
+        h2 { color: #ff6f91; margin-bottom: 20px; font-size: 2em; position: relative; }
         h2::after {
             content: '';
             width: 60px;
@@ -62,30 +33,22 @@
             margin-top: 8px;
             border-radius: 2px;
         }
-
-        p {
-            font-size: 1.1em;
-            margin-bottom: 20px;
-        }
-
+        p { font-size: 1.1em; margin-bottom: 20px; }
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
         }
-
         .gallery img {
             width: 100%;
             border-radius: 12px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
         .gallery img:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 25px rgba(0,0,0,0.2);
         }
-
         .upload-section {
             background: #ffe4e1;
             padding: 40px 20px;
@@ -93,14 +56,7 @@
             text-align: center;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-
-        .upload-section input {
-            padding: 10px;
-            margin-top: 15px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-
+        .upload-section input { padding: 10px; margin-top: 15px; border-radius: 6px; border: 1px solid #ccc; }
         .upload-section button {
             margin-top: 15px;
             padding: 12px 25px;
@@ -112,29 +68,9 @@
             cursor: pointer;
             transition: background 0.3s;
         }
-
-        .upload-section button:hover {
-            background: #ff3b6f;
-        }
-
-        #result {
-            margin-top: 20px;
-            font-size: 1.2em;
-            color: #ff3b6f;
-        }
-
-        footer {
-            background: #ff6f91;
-            color: white;
-            text-align: center;
-            padding: 25px 20px;
-            font-size: 0.9em;
-        }
-
-        @keyframes fadeInDown {
-            0% { opacity: 0; transform: translateY(-30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
+        .upload-section button:hover { background: #ff3b6f; }
+        #result { margin-top: 20px; font-size: 1.2em; color: #ff3b6f; }
+        footer { background: #ff6f91; color: white; text-align: center; padding: 25px 20px; font-size: 0.9em; }
     </style>
 </head>
 <body>
@@ -146,7 +82,7 @@
     <main>
         <section>
             <h2>Acerca del proyecto</h2>
-            <p>Este proyecto utiliza un dataset de flores con 4 clases: Rosas, Tulipanes, Narcisos y Girasoles. Se entrenó un modelo de Deep Learning para clasificar imágenes automáticamente. La interfaz permite subir imágenes y ver predicciones simuladas en tiempo real.</p>
+            <p>Este proyecto utiliza un dataset de flores con 4 clases: Rosas, Tulipanes, Narcisos y Girasoles. Se entrenó un modelo de Deep Learning para clasificar imágenes automáticamente. La interfaz permite subir imágenes y ver predicciones en tiempo real.</p>
         </section>
 
         <section>
@@ -187,8 +123,7 @@
         const resultDiv = document.getElementById('result');
         const previewImg = document.getElementById('previewImg');
 
-        const simulatedPredictions = ['Rosa', 'Tulipán', 'Narciso', 'Girasol'];
-
+        // Mostrar preview al seleccionar imagen
         fileInput.addEventListener('change', () => {
             const file = fileInput.files[0];
             if (file) {
@@ -202,17 +137,35 @@
             }
         });
 
+        // Enviar imagen al backend
         predictBtn.addEventListener('click', () => {
             if (!fileInput.files[0]) {
                 alert("Selecciona una imagen primero");
                 return;
             }
 
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+
             resultDiv.textContent = "Prediciendo...";
-            setTimeout(() => {
-                const prediction = simulatedPredictions[Math.floor(Math.random() * simulatedPredictions.length)];
-                resultDiv.textContent = `La flor es: ${prediction} 🌸`;
-            }, 1000);
+
+            fetch('http://localhost:5000/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.prediction) {
+                    resultDiv.textContent = `La flor es: ${data.prediction} 🌸`;
+                } else {
+                    resultDiv.textContent = 'Error en la predicción';
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                resultDiv.textContent = 'Error de conexión con el servidor';
+            });
         });
     </script>
 </body>
