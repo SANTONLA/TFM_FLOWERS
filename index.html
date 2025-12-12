@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TFM FLOWERS 🌸</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -39,6 +36,25 @@
             border-radius: 2px;
         }
         p { font-size: 1.1em; margin-bottom: 20px; }
+
+        /* Carrusel Swiper */
+        .swiper {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto 40px;
+        }
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .swiper-slide img {
+            width: 50%; /* imágenes más pequeñas */
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px rgba(0,0,0,0.15);
+        }
+
         .upload-section {
             background: #ffe4e1;
             padding: 40px 20px;
@@ -60,21 +76,8 @@
         }
         .upload-section button:hover { background: #ff3b6f; }
         #result { margin-top: 20px; font-size: 1.2em; color: #ff3b6f; }
-        footer { background: #ff6f91; color: white; text-align: center; padding: 25px 20px; font-size: 0.9em; }
 
-        /* Swiper Carrusel */
-        .swiper-container {
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto 40px;
-        }
-        .swiper-slide img {
-            max-width: 50%;  /* imágenes más pequeñas */
-            height: auto;
-            margin: 0 auto;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px rgba(0,0,0,0.15);
-        }
+        footer { background: #ff6f91; color: white; text-align: center; padding: 25px 20px; font-size: 0.9em; }
     </style>
 </head>
 <body>
@@ -99,7 +102,7 @@
         <section>
             <h2>Galería de ejemplo</h2>
             <!-- Swiper -->
-            <div class="swiper-container">
+            <div class="swiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide"><img src="imagenes/rosa1024.jpg" alt="Rosa"></div>
                     <div class="swiper-slide"><img src="imagenes/tulipan1024.jpg" alt="Tulipán"></div>
@@ -107,10 +110,11 @@
                     <div class="swiper-slide"><img src="imagenes/girasol1024.jpg" alt="Girasol"></div>
                     <div class="swiper-slide"><img src="imagenes/dientedeleon1024.jpg" alt="Diente de león"></div>
                 </div>
-                <!-- Botones y paginación -->
+                <!-- Paginación -->
+                <div class="swiper-pagination"></div>
+                <!-- Navegación -->
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
             </div>
         </section>
 
@@ -134,18 +138,17 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script>
-        const swiper = new Swiper('.swiper-container', {
+        const swiper = new Swiper('.swiper', {
             loop: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            autoplay: { delay: 3000, disableOnInteraction: false },
+            slidesPerView: 1,
+            spaceBetween: 10,
+            centeredSlides: true,
         });
 
+        // Preview y predicción
         const fileInput = document.getElementById('fileInput');
         const predictBtn = document.getElementById('predictBtn');
         const resultDiv = document.getElementById('result');
@@ -169,7 +172,6 @@
                 alert("Selecciona una imagen primero");
                 return;
             }
-
             const file = fileInput.files[0];
             const formData = new FormData();
             formData.append('file', file);
@@ -196,3 +198,4 @@
     </script>
 </body>
 </html>
+
