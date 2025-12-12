@@ -7,7 +7,7 @@ import gdown
 app = Flask(__name__)
 
 # Descargar el modelo desde Google Drive (enlace directo)
-file_id = '1RVb_OQxe7frWNzfhEq-uZyG_YndC7ZAm'  # ID del archivo en Drive
+file_id = '1JcPZfetOGB1kIffK798dFOLti_u8SKav'  # ID del archivo en Drive
 url = f'https://drive.google.com/uc?id={file_id}'
 output = 'flowers_model.pkl'
 
