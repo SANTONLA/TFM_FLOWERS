@@ -1,201 +1,203 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TFM FLOWERS 🌸</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            background: #fffaf0;
-            color: #333;
-        }
-        header {
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
-            color: #fff;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        header h1 { font-size: 3em; margin-bottom: 10px; }
-        header p { font-size: 1.3em; opacity: 0.9; }
-        main { max-width: 1100px; margin: auto; padding: 40px 20px; }
-        section { margin-bottom: 60px; }
-        h2 { color: #ff6f91; margin-bottom: 20px; font-size: 2em; position: relative; }
-        h2::after {
-            content: '';
-            width: 60px;
-            height: 4px;
-            background: #ff6f91;
-            display: block;
-            margin-top: 8px;
-            border-radius: 2px;
-        }
-        p { font-size: 1.1em; margin-bottom: 20px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TFM FLOWERS 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height:1.6;
+    background:#fffaf0;
+    color:#333;
+}
+header {
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    color:#fff;
+    text-align:center;
+    padding:60px 20px;
+}
+header h1 { font-size:3em; margin-bottom:10px; }
+header p { font-size:1.3em; opacity:0.9; }
+main { max-width:1100px; margin:auto; padding:40px 20px; }
+section { margin-bottom:60px; }
+h2 { color:#ff6f91; margin-bottom:20px; font-size:2em; position:relative; }
+h2::after {
+    content:'';
+    width:60px;
+    height:4px;
+    background:#ff6f91;
+    display:block;
+    margin-top:8px;
+    border-radius:2px;
+}
+p { font-size:1.1em; margin-bottom:20px; }
 
-        /* Carrusel Swiper */
-        .swiper {
-            width: 100%;
-            max-width: 600px;
-            margin: 20px auto 40px;
-        }
-        .swiper-slide {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .swiper-slide img {
-            width: 50%; /* imágenes más pequeñas */
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px rgba(0,0,0,0.15);
-        }
+/* Swiper */
+.swiper {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto 40px;
+}
+.swiper-slide {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.swiper-slide img {
+    width: 100%;
+    max-width:200px; /* ajusta tamaño */
+    height:auto;
+    border-radius:12px;
+    box-shadow:0 10px 15px rgba(0,0,0,0.15);
+}
 
-        .upload-section {
-            background: #ffe4e1;
-            padding: 40px 20px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .upload-section input { padding: 10px; margin-top: 15px; border-radius: 6px; border: 1px solid #ccc; }
-        .upload-section button {
-            margin-top: 15px;
-            padding: 12px 25px;
-            font-size: 1em;
-            background: #ff6f91;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .upload-section button:hover { background: #ff3b6f; }
-        #result { margin-top: 20px; font-size: 1.2em; color: #ff3b6f; }
+/* Botones navegación */
+.swiper-button-next, .swiper-button-prev {
+    color: #ff6f91;
+}
 
-        footer { background: #ff6f91; color: white; text-align: center; padding: 25px 20px; font-size: 0.9em; }
-    </style>
+.upload-section {
+    background: #ffe4e1;
+    padding:40px 20px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+}
+.upload-section input { padding:10px; margin-top:15px; border-radius:6px; border:1px solid #ccc; }
+.upload-section button {
+    margin-top:15px;
+    padding:12px 25px;
+    font-size:1em;
+    background:#ff6f91;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    transition: background 0.3s;
+}
+.upload-section button:hover { background:#ff3b6f; }
+#result { margin-top:20px; font-size:1.2em; color:#ff3b6f; }
+
+footer { background:#ff6f91; color:white; text-align:center; padding:25px 20px; font-size:0.9em; }
+</style>
 </head>
 <body>
-    <header>
-        <h1>TFM FLOWERS 🌸</h1>
-        <p>Clasificación de flores con Deep Learning y Fastai</p>
-    </header>
+<header>
+    <h1>TFM FLOWERS 🌸</h1>
+    <p>Clasificación de flores con Deep Learning y Fastai</p>
+</header>
 
-    <main>
-        <section>
-            <h2>Acerca del proyecto</h2>
-            <p>Este proyecto permite identificar automáticamente 5 tipos de flores: <strong>Rosa, Tulipán, Narciso, Girasol y Diente de león</strong>.  
-            Se entrenó un modelo de Deep Learning usando <strong>Fastai</strong> para lograr alta precisión. La interfaz permite subir imágenes y ver la predicción en tiempo real.</p>
-        </section>
+<main>
+    <section>
+        <h2>Acerca del proyecto</h2>
+        <p>Este proyecto permite identificar automáticamente 5 tipos de flores: <strong>Rosa, Tulipán, Narciso, Girasol y Diente de león</strong>.  
+        Se entrenó un modelo de Deep Learning usando <strong>Fastai</strong> para lograr alta precisión.</p>
+    </section>
 
-        <section>
-            <h2>Modelo y Dataset</h2>
-            <p>Se utilizó un modelo <strong>ResNet18</strong> preentrenado y ajustado (fine-tuning) con Fastai.  
-            Las imágenes se redimensionaron a 128x128 px y se dividieron automáticamente en conjuntos de entrenamiento y validación.</p>
-        </section>
+    <section>
+        <h2>Modelo y Dataset</h2>
+        <p>Se utilizó un modelo <strong>ResNet18</strong> preentrenado y ajustado (fine-tuning) con Fastai.  
+        Las imágenes se redimensionaron a 128x128 px y se dividieron automáticamente en conjuntos de entrenamiento y validación.</p>
+    </section>
 
-        <section>
-            <h2>Galería de ejemplo</h2>
-            <!-- Swiper -->
-            <div class="swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide"><img src="imagenes/rosa1024.jpg" alt="Rosa"></div>
-                    <div class="swiper-slide"><img src="imagenes/tulipan1024.jpg" alt="Tulipán"></div>
-                    <div class="swiper-slide"><img src="imagenes/narciso1024.jpg" alt="Narciso"></div>
-                    <div class="swiper-slide"><img src="imagenes/girasol1024.jpg" alt="Girasol"></div>
-                    <div class="swiper-slide"><img src="imagenes/dientedeleon1024.jpg" alt="Diente de león"></div>
-                </div>
-                <!-- Paginación -->
-                <div class="swiper-pagination"></div>
-                <!-- Navegación -->
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
+    <section>
+        <h2>Galería de ejemplo</h2>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="imagenes/rosa1024.jpg" alt="Rosa"></div>
+                <div class="swiper-slide"><img src="imagenes/tulipan1024.jpg" alt="Tulipán"></div>
+                <div class="swiper-slide"><img src="imagenes/narciso1024.jpg" alt="Narciso"></div>
+                <div class="swiper-slide"><img src="imagenes/girasol1024.jpg" alt="Girasol"></div>
+                <div class="swiper-slide"><img src="imagenes/dientedeleon1024.jpg" alt="Diente de león"></div>
             </div>
-        </section>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
 
-        <section class="upload-section">
-            <h2>Prueba el modelo</h2>
-            <p>Sube una imagen y el modelo te dirá a qué flor pertenece:</p>
-            <input type="file" id="fileInput" accept="image/*">
-            <br>
-            <button id="predictBtn">Predecir Flor</button>
-            <p id="result"></p>
-            <div class="preview" style="margin-top:20px;">
-                <img id="previewImg" src="" alt="" style="max-width:300px; border-radius:10px; display:none; box-shadow:0 10px 15px rgba(0,0,0,0.2);">
-            </div>
-        </section>
-    </main>
+    <section class="upload-section">
+        <h2>Prueba el modelo</h2>
+        <p>Sube una imagen y el modelo te dirá a qué flor pertenece:</p>
+        <input type="file" id="fileInput" accept="image/*">
+        <br>
+        <button id="predictBtn">Predecir Flor</button>
+        <p id="result"></p>
+        <div class="preview" style="margin-top:20px;">
+            <img id="previewImg" src="" alt="" style="max-width:300px; border-radius:10px; display:none; box-shadow:0 10px 15px rgba(0,0,0,0.2);">
+        </div>
+    </section>
+</main>
 
-    <footer>
-        <p>TFM FLOWERS &copy; 2025 - Proyecto de Deep Learning</p>
-    </footer>
+<footer>
+    <p>TFM FLOWERS &copy; 2025 - Proyecto de Deep Learning</p>
+</footer>
 
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script>
-        const swiper = new Swiper('.swiper', {
-            loop: true,
-            pagination: { el: '.swiper-pagination', clickable: true },
-            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-            autoplay: { delay: 3000, disableOnInteraction: false },
-            slidesPerView: 1,
-            spaceBetween: 10,
-            centeredSlides: true,
-        });
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+const swiper = new Swiper('.swiper', {
+    loop: true,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    autoplay: { delay: 3000, disableOnInteraction: false },
+    slidesPerView: 1,
+    spaceBetween: 10,
+    centeredSlides: true,
+});
 
-        // Preview y predicción
-        const fileInput = document.getElementById('fileInput');
-        const predictBtn = document.getElementById('predictBtn');
-        const resultDiv = document.getElementById('result');
-        const previewImg = document.getElementById('previewImg');
+// Preview y predicción
+const fileInput = document.getElementById('fileInput');
+const predictBtn = document.getElementById('predictBtn');
+const resultDiv = document.getElementById('result');
+const previewImg = document.getElementById('previewImg');
 
-        fileInput.addEventListener('change', () => {
-            const file = fileInput.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = e => {
-                    previewImg.src = e.target.result;
-                    previewImg.style.display = 'block';
-                    resultDiv.textContent = '';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
+fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            previewImg.src = e.target.result;
+            previewImg.style.display = 'block';
+            resultDiv.textContent = '';
+        };
+        reader.readAsDataURL(file);
+    }
+});
 
-        predictBtn.addEventListener('click', () => {
-            if (!fileInput.files[0]) {
-                alert("Selecciona una imagen primero");
-                return;
-            }
-            const file = fileInput.files[0];
-            const formData = new FormData();
-            formData.append('file', file);
+predictBtn.addEventListener('click', () => {
+    if (!fileInput.files[0]) {
+        alert("Selecciona una imagen primero");
+        return;
+    }
+    const file = fileInput.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
 
-            resultDiv.textContent = "Prediciendo...";
+    resultDiv.textContent = "Prediciendo...";
 
-            fetch('http://localhost:5000/predict', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.prediction) {
-                    resultDiv.textContent = `La flor es: ${data.prediction} 🌸`;
-                } else {
-                    resultDiv.textContent = 'Error en la predicción';
-                }
-            })
-            .catch(err => {
-                console.error(err);
-                resultDiv.textContent = 'Error de conexión con el servidor';
-            });
-        });
-    </script>
+    fetch('/predict', {  // Usa ruta relativa si sirves HTML desde Flask
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.prediction) {
+            resultDiv.textContent = `La flor es: ${data.prediction} 🌸`;
+        } else {
+            resultDiv.textContent = 'Error en la predicción';
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        resultDiv.textContent = 'Error de conexión con el servidor';
+    });
+});
+</script>
 </body>
 </html>
-
