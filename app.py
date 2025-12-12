@@ -1,13 +1,22 @@
 from fastai.vision.all import *
 from flask import Flask, request, jsonify
 from pathlib import Path
+import gdown
 
 # Inicializa Flask
 app = Flask(__name__)
 
+# Descargar el modelo desde Google Drive (enlace directo)
+file_id = '1RVb_OQxe7frWNzfhEq-uZyG_YndC7ZAm'  # ID del archivo en Drive
+url = f'https://drive.google.com/uc?id={file_id}'
+output = 'flowers_model.pkl'
+
+# Solo descargar si no existe
+if not Path(output).exists():
+    gdown.download(url, output, quiet=False)
+
 # Cargar el modelo exportado
-model_path = Path("flowers_model.pkl")  # Ajusta la ruta si hace falta
-learn = load_learner(model_path)
+learn = load_learner(Path(output))
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -31,4 +40,5 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
