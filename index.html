@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TFM FLOWERS 🌸</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -34,21 +36,6 @@
             border-radius: 2px;
         }
         p { font-size: 1.1em; margin-bottom: 20px; }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-        }
-        .gallery img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .gallery img:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
-        }
         .upload-section {
             background: #ffe4e1;
             padding: 40px 20px;
@@ -71,6 +58,9 @@
         .upload-section button:hover { background: #ff3b6f; }
         #result { margin-top: 20px; font-size: 1.2em; color: #ff3b6f; }
         footer { background: #ff6f91; color: white; text-align: center; padding: 25px 20px; font-size: 0.9em; }
+        /* Estilo del carrusel */
+        .swiper-container { width: 100%; max-width: 600px; margin: auto; }
+        .swiper-slide img { width: 100%; border-radius: 12px; }
     </style>
 </head>
 <body>
@@ -94,12 +84,20 @@
 
         <section>
             <h2>Galería de ejemplo</h2>
-            <div class="gallery">
-                <img src="imagenes/rosa1024.jpg" alt="Rosa">
-                <img src="imagenes/tulipan1024.jpg" alt="Tulipán">
-                <img src="imagenes/narciso1024.jpg" alt="Narciso">
-                <img src="imagenes/girasol1024.jpg" alt="Girasol">
-                <img src="imagenes/dientedeleon1024.jpg" alt="Diente de león">
+            <!-- Carrusel Swiper -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><img src="imagenes/rosa1024.jpg" alt="Rosa"></div>
+                    <div class="swiper-slide"><img src="imagenes/tulipan1024.jpg" alt="Tulipán"></div>
+                    <div class="swiper-slide"><img src="imagenes/narciso1024.jpg" alt="Narciso"></div>
+                    <div class="swiper-slide"><img src="imagenes/girasol1024.jpg" alt="Girasol"></div>
+                    <div class="swiper-slide"><img src="imagenes/dientedeleon1024.jpg" alt="Diente de león"></div>
+                </div>
+                <!-- Botones de navegación -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <!-- Paginación -->
+                <div class="swiper-pagination"></div>
             </div>
         </section>
 
@@ -120,7 +118,18 @@
         <p>TFM FLOWERS &copy; 2025 - Proyecto de Deep Learning</p>
     </footer>
 
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
+        // Inicializar carrusel
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+            pagination: { el: '.swiper-pagination', clickable: true },
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+            autoplay: { delay: 3000, disableOnInteraction: false },
+        });
+
+        // Preview de imagen al subir
         const fileInput = document.getElementById('fileInput');
         const predictBtn = document.getElementById('predictBtn');
         const resultDiv = document.getElementById('result');
@@ -139,6 +148,7 @@
             }
         });
 
+        // Enviar imagen al backend
         predictBtn.addEventListener('click', () => {
             if (!fileInput.files[0]) {
                 alert("Selecciona una imagen primero");
@@ -171,6 +181,7 @@
     </script>
 </body>
 </html>
+
 
 
 
