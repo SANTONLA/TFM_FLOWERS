@@ -111,9 +111,15 @@
     <p>👀 Visitas totales: <span id="visit-count">cargando...</span></p>
 </footer>
 
+<!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<!-- Firebase JS -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
 <script>
-    // Inicializa el carrusel
+    // Inicializa carousel
     new Swiper('.swiper', {
         loop:true,
         autoplay:{ delay:3000 },
@@ -133,19 +139,28 @@
         });
     });
 
-    // Contador de visitas (CountAPI)
-    fetch('https://api.countapi.xyz/hit/santonla-tfmflowers/visitas')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('visit-count').textContent = data.value;
-      })
-      .catch(err => {
-        console.error('Error al actualizar contador de visitas:', err);
-        document.getElementById('visit-count').textContent = 'N/A';
-      });
+    // Inicializa Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBvFsUUm8GKB_QyEczsUbiYmd6CyZ6NN1Y",
+      authDomain: "flowers-1d33a.firebaseapp.com",
+      projectId: "flowers-1d33a",
+      storageBucket: "flowers-1d33a.firebasestorage.app",
+      messagingSenderId: "850998617796",
+      appId: "1:850998617796:web:068370ca8a9a8984d00b91",
+      databaseURL: "https://flowers-1d33a-default-rtdb.firebaseio.com" // añadir URL Realtime Database
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
+    // Contador de visitas
+    const visitRef = db.ref('visitas_totales');
+    visitRef.transaction(current => (current || 0) + 1);
+    visitRef.on('value', snapshot => {
+        document.getElementById('visit-count').textContent = snapshot.val();
+    });
 </script>
 
 </body>
 </html>
+
 
