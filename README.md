@@ -33,7 +33,7 @@ flowers-dataset/
     └── ...
 📊 Estadísticas
 Total de imágenes: 3000
-Clases: 4 (Rosas, Tulipanes, Narcisos, Girasoles)
+Clases: 5 (Rosas, Tulipanes, Narcisos, Girasoles, Dientes de León)
 Formato de imagen: JPEG
 Resolución: 1024x768 px
 🚀 Uso
