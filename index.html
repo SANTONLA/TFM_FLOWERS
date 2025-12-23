@@ -140,10 +140,12 @@
         document.getElementById('visit-count').textContent = data.value;
       })
       .catch(err => {
-        console.error('Error al actualizar contador:', err);
+        console.error('Error al actualizar contador de visitas:', err);
         document.getElementById('visit-count').textContent = 'N/A';
       });
+
 </script>
 
 </body>
 </html>
+
