@@ -1,86 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TFM FLOWERS 🌸</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TFM FLOWERS 🌸</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Roboto', sans-serif; line-height:1.6; background:#fffaf0; color:#333; }
+    header { background:linear-gradient(to right,#ff9a9e,#fad0c4); color:#fff; text-align:center; padding:60px 20px; }
+    header h1 { font-size:3em; margin-bottom:10px; }
+    header p { font-size:1.3em; opacity:0.9; }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            background: #fffaf0;
-            color: #333;
-        }
+    nav { display:flex; justify-content:center; gap:20px; margin-bottom:30px; }
+    nav button {
+        background:#ff6f91; color:white; border:none; padding:12px 25px; border-radius:8px; cursor:pointer; font-size:1em;
+        transition:0.3s;
+    }
+    nav button.active, nav button:hover { background:#ff3b6f; }
 
-        header {
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
-            color: #fff;
-            text-align: center;
-            padding: 60px 20px;
-        }
+    main { max-width:1100px; margin:auto; padding:20px; }
+    section { display:none; margin-bottom:60px; }
+    section.active { display:block; }
 
-        header h1 { font-size: 3em; margin-bottom: 10px; }
-        header p { font-size: 1.3em; opacity: 0.9; }
+    h2 { color:#ff6f91; margin-bottom:20px; font-size:2em; }
+    p { font-size:1.1em; margin-bottom:20px; }
 
-        main { max-width: 1100px; margin: auto; padding: 40px 20px; }
-        section { margin-bottom: 70px; }
+    /* Carrusel */
+    .swiper { max-width:520px; margin:0 auto 40px; }
+    .swiper-slide { display:flex; justify-content:center; }
+    .swiper-slide img { width:50%; border-radius:12px; box-shadow:0 10px 15px rgba(0,0,0,0.15); }
 
-        h2 {
-            color: #ff6f91;
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
+    /* Space iframe */
+    .space-section iframe { width:100%; height:850px; border:none; border-radius:12px; background:white; }
 
-        p { font-size: 1.1em; margin-bottom: 20px; }
+    footer { background:#ff6f91; color:white; text-align:center; padding:25px 20px; margin-top:40px; }
 
-        /* Carrusel */
-        .swiper {
-            max-width: 520px;
-            margin: 0 auto 40px;
-        }
-
-        .swiper-slide {
-            display: flex;
-            justify-content: center;
-        }
-
-        .swiper-slide img {
-            width: 50%;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px rgba(0,0,0,0.15);
-        }
-
-        /* Sección Space */
-        .space-section {
-            background: #ffe4e1;
-            padding: 40px 20px;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .space-section iframe {
-            width: 100%;
-            height: 850px;
-            border: none;
-            border-radius: 12px;
-            background: white;
-        }
-
-        footer {
-            background: #ff6f91;
-            color: white;
-            text-align: center;
-            padding: 25px 20px;
-        }
-    </style>
+</style>
 </head>
-
 <body>
 
 <header>
@@ -88,57 +48,52 @@
     <p>Clasificación de flores con Deep Learning y Fastai</p>
 </header>
 
+<nav>
+    <button class="tab-btn active" data-tab="inicio">Inicio</button>
+    <button class="tab-btn" data-tab="demo">Demostrador</button>
+</nav>
+
 <main>
+    <!-- Pestaña Inicio -->
+    <section id="inicio" class="active">
+        <h2>Acerca del proyecto</h2>
+        <p>
+            Este proyecto identifica automáticamente
+            <strong>Rosa, Tulipán, Narciso, Girasol y Diente de león</strong>
+            mediante un modelo de <strong>Deep Learning</strong> entrenado con
+            <strong>Fastai</strong>.
+        </p>
 
-<section>
-    <h2>Acerca del proyecto</h2>
-    <p>
-        Este proyecto identifica automáticamente
-        <strong>Rosa, Tulipán, Narciso, Girasol y Diente de león</strong>
-        mediante un modelo de <strong>Deep Learning</strong> entrenado con
-        <strong>Fastai</strong> y desplegado en producción.
-    </p>
-</section>
-
-<section>
-    <h2>Galería de ejemplo</h2>
-
-    <div class="swiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="imagenes/rosa1024.jpg"></div>
-            <div class="swiper-slide"><img src="imagenes/tulipan1024.jpg"></div>
-            <div class="swiper-slide"><img src="imagenes/narciso1024.jpg"></div>
-            <div class="swiper-slide"><img src="imagenes/girasol1024.jpg"></div>
-            <div class="swiper-slide"><img src="imagenes/dientedeleon1024.jpg"></div>
+        <h2>Galería de ejemplo</h2>
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="imagenes/rosa1024.jpg"></div>
+                <div class="swiper-slide"><img src="imagenes/tulipan1024.jpg"></div>
+                <div class="swiper-slide"><img src="imagenes/narciso1024.jpg"></div>
+                <div class="swiper-slide"><img src="imagenes/girasol1024.jpg"></div>
+                <div class="swiper-slide"><img src="imagenes/dientedeleon1024.jpg"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
+    </section>
 
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-    </div>
-</section>
-
-<section class="space-section">
-    <h2>🔍 Demostrador interactivo</h2>
-
-    <p>
-        A continuación se muestra el demostrador del modelo desplegado en
-        <strong>Hugging Face Spaces</strong>, plataforma especializada en
-        inferencia de modelos de Machine Learning.
-        Puedes subir una imagen y analizarla en tiempo real.
-    </p>
-
-    <iframe
-        src="https://huggingface.co/spaces/Santonla/FLOWERS"
-        loading="lazy">
-    </iframe>
-
-    <p style="margin-top:15px; font-size:0.95em; color:#555;">
-        Nota: El demostrador se ejecuta en un entorno externo optimizado para
-        inferencia. Los resultados dependen de la calidad y el encuadre de la imagen.
-    </p>
-</section>
-
+    <!-- Pestaña Demostrador -->
+    <section id="demo">
+        <h2>🔍 Demostrador interactivo</h2>
+        <p>
+            Puedes probar el modelo de clasificación en tiempo real mediante el
+            demostrador desplegado en <strong>Hugging Face Spaces</strong>.
+        </p>
+        <div class="space-section">
+            <iframe src="https://huggingface.co/spaces/Santonla/FLOWERS" loading="lazy"></iframe>
+        </div>
+        <p style="margin-top:15px; font-size:0.95em; color:#555;">
+            Nota: El demostrador se ejecuta en un entorno externo optimizado para
+            inferencia. Los resultados dependen de la calidad y el encuadre de la imagen.
+        </p>
+    </section>
 </main>
 
 <footer>
@@ -146,21 +101,27 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-
 <script>
+    // Inicializa el carrusel
     new Swiper('.swiper', {
-        loop: true,
-        autoplay: { delay: 3000 },
-        pagination: { el: '.swiper-pagination' },
-        navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
+        loop:true,
+        autoplay:{ delay:3000 },
+        pagination:{ el:'.swiper-pagination' },
+        navigation:{ nextEl:'.swiper-button-next', prevEl:'.swiper-button-prev' }
+    });
+
+    // Control de tabs
+    const tabs = document.querySelectorAll('.tab-btn');
+    const sections = document.querySelectorAll('main section');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t=>t.classList.remove('active'));
+            tab.classList.add('active');
+            sections.forEach(s=>s.classList.remove('active'));
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
     });
 </script>
 
 </body>
 </html>
-
-
-</body>
-</html>
-
-
